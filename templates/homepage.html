@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1>Homepage</h1>
+{% endblock %}
+
+{% block content %}
+
+<div>
+  <h2>Random Pet Of The Day</h2>
+  <img src={{random_pet.photo_url}} height=200px width=200px>
+  <a href="{{random_pet.url}}">{{random_pet.name}}</a>
+  <p>{{random_pet.age}}</p>
+
+</div>
+<div>
+<h2>Shelter Pets</h2>
+  <ul>
+    {% for pet in pets %}
+    <li><a href="/{{pet.id}}">{{pet.name}}</a>
+      {%if pet.photo_url %}
+      <img src="{{pet.photo_url}}" height=200px width=200px alt="">
+      {%endif%}
+      {%if pet.available %}
+      <b>Available!</b>
+      {%endif%}
+    </li>
+    
+    {%endfor%}
+  </ul>
+</div>
+
+<a href="/add" class="btn btn-primary">Add a pet</a>
+  {% endblock %}
+
+  
